@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const ChildrenResultSchema = new mongoose.Schema({
   childId: {
     type: String,
-    required: true,
-    unique: true // optional but recommended if childId is unique
+    required: true
+    // You can optionally add unique: true if each child has one record
   },
   name: {
     type: String,
