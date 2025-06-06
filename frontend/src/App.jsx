@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import UserDashboard from './pages/user/UserDashboard';
+import PromptReader from './components/PromptReader'; // 👈 newly added
 import './App.css';
 
 function App() {
@@ -36,6 +37,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reader"
+            element={
+              <ProtectedRoute>
+                <PromptReader />
               </ProtectedRoute>
             }
           />

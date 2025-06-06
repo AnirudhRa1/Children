@@ -167,3 +167,23 @@
     font-size: 1.3rem;
   }
 } 
+.reader-button-section {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.start-test-button {
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-test-button:hover {
+  background-color: #1e40af;
+}
