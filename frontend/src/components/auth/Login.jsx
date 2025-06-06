@@ -15,8 +15,13 @@ export default function Login() {
     try {
       setError('');
       setLoading(true);
-      await login(email, password);
-      navigate('/home');
+      const result = await login(email, password);
+      // Navigate based on user role
+      if (result.isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/user');
+      }
     } catch (error) {
       setError('Failed to sign in. Please check your credentials.');
     }
@@ -27,8 +32,13 @@ export default function Login() {
     try {
       setError('');
       setLoading(true);
-      await loginWithGoogle();
-      navigate('/home');
+      const result = await loginWithGoogle();
+      // Navigate based on user role
+      if (result.isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/user');
+      }
     } catch (error) {
       setError('Failed to sign in with Google.');
     }

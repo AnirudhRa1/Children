@@ -4,6 +4,8 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Home from './components/home/Home';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import UserDashboard from './pages/user/UserDashboard';
 import './App.css';
 
 function App() {
@@ -18,6 +20,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user"
+            element={
+              <ProtectedRoute>
+                <UserDashboard />
               </ProtectedRoute>
             }
           />

@@ -25,12 +25,20 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      // Check if the user is an admin (you can modify this logic based on your requirements)
+      const isAdmin = email.toLowerCase().includes('admin');
+      return { ...userCredential, isAdmin };
+    });
   }
 
   function loginWithGoogle() {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, provider).then((result) => {
+      // Check if the user is an admin (you can modify this logic based on your requirements)
+      const isAdmin = result.user.email.toLowerCase().includes('admin');
+      return { ...result, isAdmin };
+    });
   }
 
   function logout() {
@@ -39,7 +47,13 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      if (user) {
+        // Check if the user is an admin
+        const isAdmin = user.email.toLowerCase().includes('admin');
+        setCurrentUser({ ...user, isAdmin });
+      } else {
+        setCurrentUser(null);
+      }
       setLoading(false);
     });
 
